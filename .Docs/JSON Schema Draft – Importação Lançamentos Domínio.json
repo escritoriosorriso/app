@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Arquivo Importação Lançamentos Domínio - Separador | (Draft)",
+  "description": "Array de linhas do arquivo TXT. Cada item é um registro parseado.",
+  "type": "array",
+  "items": {
+    "oneOf": [
+      { "$ref": "#/$defs/0000" },
+      { "$ref": "#/$defs/0200" },
+      { "$ref": "#/$defs/0220" },
+      { "$ref": "#/$defs/6000" },
+      { "$ref": "#/$defs/6100" }
+    ]
+  },
+  "minItems": 1,
+
+  "$defs": {
+    "0000": {
+      "type": "object",
+      "properties": {
+        "registro": { "const": "0000" },
+        "inscricaoEmpresa": {
+          "type": "string",
+          "pattern": "^\\d{11,14}$",
+          "description": "CNPJ/CPF/CEI/CAEPF apenas números"
+        }
+      },
+      "required": ["registro", "inscricaoEmpresa"],
+      "additionalProperties": false
+    },
+
+    "0200": {
+      "type": "object",
+      "properties": {
+        "registro": { "const": "0200" },
+        "codigoReduzido": { "type": "string", "pattern": "^\\d+$" },
+        "classificacao": { "type": "string" },
+        "tipo": { "enum": ["A", "S"] },
+        "descricao": {
+          "type": "string",
+          "maxLength": 95
+        },
+        "dataCadastro": {
+          "type": "string",
+          "pattern": "^\\d{2}/\\d{2}/\\d{4}$"
+        },
+        "situacao": { "enum": ["A", "I"] },
+        "dataInativacao": {
+          "type": ["string", "null"],
+          "pattern": "^\\d{2}/\\d{2}/\\d{4}$"
+        },
+        "codDLPA": { "type": ["string", "null"], "pattern": "^\\d*$" },
+        "codDOAR": { "type": ["string", "null"], "pattern": "^\\d*$" },
+        "codDRE": { "type": ["string", "null"], "pattern": "^\\d*$" },
+        "codDMPL": { "type": ["string", "null"], "pattern": "^\\d*$" }
+      },
+      "required": ["registro", "codigoReduzido", "classificacao", "tipo", "descricao", "dataCadastro", "situacao"],
+      "additionalProperties": false
+    },
+
+    "0220": {
+      "type": "object",
+      "properties": {
+        "registro": { "const": "0220" },
+        "codigo": { "type": "string", "pattern": "^\\d+$" },
+        "descricao": {
+          "type": "string",
+          "maxLength": 90
+        }
+      },
+      "required": ["registro", "codigo", "descricao"],
+      "additionalProperties": false
+    },
+
+    "6000": {
+      "type": "object",
+      "properties": {
+        "registro": { "const": "6000" },
+        "tipoLancamento": { "enum": ["D", "C", "X", "V"] },
+        "codLancPadrao": { "type": ["string", "null"], "pattern": "^\\d*$" },
+        "localizador": { "type": ["string", "null"] },
+        "rttFcont": { "type": ["string", "null"] }
+      },
+      "required": ["registro", "tipoLancamento"],
+      "additionalProperties": false
+    },
+
+    "6100": {
+      "type": "object",
+      "properties": {
+        "registro": { "const": "6100" },
+        "dataLancamento": {
+          "type": "string",
+          "pattern": "^\\d{2}/\\d{2}/\\d{4}$"
+        },
+        "contaDebito": { "type": "string", "pattern": "^\\d+$" },
+        "contaCredito": { "type": "string", "pattern": "^\\d+$" },
+        "valor": {
+          "type": "string",
+          "pattern": "^\\d{1,15},\\d{1,6}$",
+          "description": "Ex: 1500,00 | 121500,25 | 154584,1235"
+        },
+        "codHistorico": { "type": ["string", "null"], "pattern": "^\\d*$" },
+        "descHistorico": {
+          "type": "string",
+          "maxLength": 110
+        },
+        "usuario": { "type": ["string", "null"] },
+        "codFilial": { "type": ["string", "null"], "pattern": "^\\d*$" },
+        "codSCP": { "type": ["string", "null"], "pattern": "^\\d*$" }
+      },
+      "required": ["registro", "dataLancamento", "valor", "descHistorico"],
+      "if": {
+        "properties": { "codHistorico": { "not": { "const": "" } } }
+      },
+      "then": { "required": ["codHistorico"] },
+      "additionalProperties": false
+    }
+  }
+}
