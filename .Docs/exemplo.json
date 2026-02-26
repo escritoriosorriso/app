@@ -1,0 +1,113 @@
+{
+  "bloco_0000": {
+    "header": {
+      "registro": "0000",
+      "inscricaoEmpresa": "75412896000185"
+    },
+    "reg_0200": [
+      {
+        "registro": "0200",
+        "codigoReduzido": "101",
+        "classificacao": "1.1.01",
+        "tipo": "A",
+        "descricao": "CAIXA",
+        "dataCadastro": "01/01/2024",
+        "situacao": "A",
+        "dataInativacao": null,
+        "codDLPA": null,
+        "codDOAR": null,
+        "codDRE": null,
+        "codDMPL": null
+      },
+      {
+        "registro": "0200",
+        "codigoReduzido": "102",
+        "classificacao": "1.1.02",
+        "tipo": "A",
+        "descricao": "BANCO ITAÚ",
+        "dataCadastro": "01/01/2024",
+        "situacao": "A",
+        "dataInativacao": null,
+        "codDLPA": null,
+        "codDOAR": null,
+        "codDRE": null,
+        "codDMPL": null
+      },
+      {
+        "registro": "0200",
+        "codigoReduzido": "201",
+        "classificacao": "4.1.01",
+        "tipo": "A",
+        "descricao": "DESPESAS ADMINISTRATIVAS",
+        "dataCadastro": "01/01/2024",
+        "situacao": "A",
+        "dataInativacao": null,
+        "codDLPA": null,
+        "codDOAR": null,
+        "codDRE": null,
+        "codDMPL": null
+      }
+    ],
+    "reg_0220": [
+      {
+        "registro": "0220",
+        "codigo": "1",
+        "descricao": "COMPRA DE MERCADORIAS"
+      },
+      {
+        "registro": "0220",
+        "codigo": "2",
+        "descricao": "PAGAMENTO DE FORNECEDOR"
+      }
+    ]
+  },
+  "bloco_6000": [
+    {
+      "header": {
+        "registro": "6000",
+        "tipoLancamento": "X",
+        "codLancPadrao": null,
+        "localizador": null,
+        "rttFcont": null
+      },
+      "reg_6100": [
+        {
+          "registro": "6100",
+          "dataLancamento": "15/10/2025",
+          "contaDebito": "102",
+          "contaCredito": null,
+          "valor": "1500,00",
+          "codHistorico": "1",
+          "descHistorico": "PAGAMENTO FORNECEDOR REF NF 12345",
+          "usuario": "Victor",
+          "codFilial": null,
+          "codSCP": null
+        },
+        {
+          "registro": "6100",
+          "dataLancamento": "15/10/2025",
+          "contaDebito": "201",
+          "contaCredito": "102",
+          "valor": "1500,00",
+          "codHistorico": "1",
+          "descHistorico": "",
+          "usuario": "Victor",
+          "codFilial": null,
+          "codSCP": null
+        },
+        {
+          "registro": "6100",
+          "dataLancamento": "16/10/2025",
+          "contaDebito": "101",
+          "contaCredito": "102",
+          "valor": "800,00",
+          "codHistorico": "2",
+          "descHistorico": "RETIRADA CAIXA PARA DESPESAS",
+          "usuario": "Victor",
+          "codFilial": null,
+          "codSCP": null
+        }
+      ]
+    }
+  ]
+}
