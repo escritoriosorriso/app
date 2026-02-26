@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Arquivo Importação Lançamentos Domínio - Separador | (Draft)",
-  "description": "Array de linhas do arquivo TXT. Cada item é um registro parseado.",
+  "description": "Array linear de registros extraídos do TXT. Hierarquia é implícita e deve ser validada separadamente (ver Regras de Hierarquia).",
   "type": "array",
   "items": {
     "oneOf": [
@@ -26,7 +26,8 @@
         }
       },
       "required": ["registro", "inscricaoEmpresa"],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "BLOCO 0 Cadastros."      
     },
 
     "0200": {
@@ -55,7 +56,8 @@
         "codDMPL": { "type": ["string", "null"], "pattern": "^\\d*$" }
       },
       "required": ["registro", "codigoReduzido", "classificacao", "tipo", "descricao", "dataCadastro", "situacao"],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "Deve aparecer somente após um 0000."
     },
 
     "0220": {
@@ -69,7 +71,8 @@
         }
       },
       "required": ["registro", "codigo", "descricao"],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "Deve aparecer somente após um 0200."
     },
 
     "6000": {
@@ -82,7 +85,8 @@
         "rttFcont": { "type": ["string", "null"] }
       },
       "required": ["registro", "tipoLancamento"],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "BLOCO 6 Lançamentos em Lote."
     },
 
     "6100": {
@@ -114,7 +118,8 @@
         "properties": { "codHistorico": { "not": { "const": "" } } }
       },
       "then": { "required": ["codHistorico"] },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "Deve aparecer somente após um 6000."
     }
   }
 }
